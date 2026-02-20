@@ -1,2 +1,121 @@
-# TaskAuthAPI-
-Este é um API de Tarefas desenvolvido em .NET 8, com foco em organização, segurança e boas práticas de arquitetura. O projeto foi estruturado de forma modular, utilizando interfaces, mappers, middlewares e DTOs, garantindo separação de responsabilidades e facilidade de manutenção.
+# 🚀 TaskAuthApi - trilha-TIVIT-Api
+
+![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET-Core-5C2D91?style=for-the-badge&logo=dotnet)
+![Entity Framework](https://img.shields.io/badge/EF-Core-6C2DC7?style=for-the-badge)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange?style=for-the-badge&logo=jsonwebtokens)
+![Swagger](https://img.shields.io/badge/Docs-Swagger-brightgreen?style=for-the-badge&logo=swagger)
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker)
+![Clean Architecture](https://img.shields.io/badge/Architecture-Clean-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+
+
+## 📌 Visão Geral
+
+O **TaskAuthApi** é uma API RESTful desenvolvida com **.NET 8**, aplicando princípios de:
+
+-  Arquitetura em camadas
+-  Autenticação e autorização com JWT
+-  Separação de responsabilidades (SRP)
+-  Boas práticas de organização de código
+-  Containerização com Docker
+-  Documentação automática com Swagger
+
+O projeto foi desenvolvido como parte da **trilha TIVIT**, com foco em consolidar fundamentos sólidos de backend moderno e seguro.
+
+
+
+## 🏗️ Arquitetura
+
+A aplicação segue uma estrutura organizada, inspirada em conceitos de Clean Architecture:
+```C#
+┣ 📂 Controllers → Endpoints HTTP
+┣ 📂 DTOs → Objetos de transporte de dados
+┣ 📂 Interfaces → Contratos (Inversão de Dependência)
+┣ 📂 Services → Regras de negócio
+┣ 📂 Mappers → Conversão entre entidades e DTOs
+┣ 📂 Middlewares → Tratamento global de exceções
+┣ 📂 Security → Configuração de JWT e autorização
+┣ 📂 Data / Infra → Contexto e acesso a dados
+┗ 📂 Migrations → Versionamento do banco
+```
+
+### 🔎 Princípios aplicados
+
+- Inversão de Dependência
+- Injeção de Dependência
+- Responsabilidade Única
+- Encapsulamento de regras de negócio
+- Separação entre camada de API e domínio
+
+
+
+## 🛠️ Stack Tecnológica
+
+- .NET 8
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server (configurável)
+- JWT Authentication
+- Swagger / OpenAPI
+- Docker
+- EF Core Migrations
+
+
+## 🔐 Segurança
+
+A API utiliza:
+
+- Autenticação baseada em **JWT**
+- Controle de acesso via `[Authorize]`
+- Middleware para tratamento global de exceções
+- Configuração segura via `appsettings.json`
+
+
+
+## 🔑 Funcionalidades
+
+-  Cadastro de usuários
+-  Login com geração de Token JWT
+-  CRUD completo de tarefas
+-  Proteção de rotas autenticadas
+-  Documentação interativa com Swagger
+-  Containerização com Docker
+
+
+
+# 🐳 Execução com Docker Compose
+
+O projeto está configurado para subir via Docker Compose, permitindo orquestração da API junto com o banco de dados.
+
+**Subir os containers**
+
+```bash
+docker-compose up --build
+```
+**Acessar a aplicação**
+```Http
+http://localhost:8080/swagger
+```
+## ▶️ Execução Local (sem Docker)
+1. Clonar o repositório
+```Bash
+git clone https://github.com/seu-usuario/taskAuthApi.git
+cd taskAuthApi
+```
+2. Configurar conexão com banco
+   `appsettings.json`
+3. Executar migrations
+```Bash
+dotnet ef database update
+```
+4. Rodar aplicação
+```Bash
+dotnet run
+```
+Swagger:
+```Http
+https://localhost:5001/swagger
+```
+
