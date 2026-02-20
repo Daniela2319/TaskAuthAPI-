@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  backend:
+    build: ./taskAuthApi
+    container_name: tarefas-backend
+    ports:
+      - "8001:8080" # bate com EXPOSE do Dockerfile
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - ConnectionStrings__DockerConnection=Server=db;Database=TarefasDb;User Id=SA;Password=SenhaForte123!;Encrypt=False;
+    depends_on:
+      - db
+    networks:
+      - tarefas-network
+  db:
+    image: mcr.microsoft.com/azure-sql-edge
+    container_name: tarefas-db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=SenhaForte123!
+    ports:
+      - "1433:1433"
+    networks:
+      - tarefas-network
+
+networks:
+  tarefas-network:
