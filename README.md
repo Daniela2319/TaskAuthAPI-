@@ -90,23 +90,30 @@ A API utiliza:
 O projeto está configurado para subir via Docker Compose, permitindo orquestração da API junto com o banco de dados.
 
 **Subir os containers**
-
+1. Clonar o repositório
+```Bash
+git clone https://github.com/Daniela2319/TaskAuthAPI-.git
+cd TaskAuthAPI
+```
+2. No terminal:
 ```bash
 docker-compose up --build
 ```
-**Acessar a aplicação**
+3. Acessar a aplicação
 ```Http
 http://localhost:8080/swagger
 ```
 ## ▶️ Execução Local (sem Docker)
 1. Clonar o repositório
 ```Bash
-git clone https://github.com/seu-usuario/taskAuthApi.git
-cd taskAuthApi
+git clone https://github.com/Daniela2319/TaskAuthAPI-.git
+cd TaskAuthAPI
 ```
 2. Configurar conexão com banco
-   `appsettings.json`
-3. Executar migrations
+```Bash
+appsettings.json
+```
+4. Executar migrations
 ```Bash
 dotnet ef database update
 ```
@@ -118,4 +125,54 @@ Swagger:
 ```Http
 https://localhost:5001/swagger
 ```
+## 📖 Exemplos de Requisições
+### 🔐 Login
+```Bash
+POST /api/auth/login
+```
+```Json
+{
+  "email": "usuario@exemplo.com",
+  "password": "senha"
+}
+```
+## 📝 Criar Tarefa (Autenticado)
+```Bash
+POST /api/tasks
+Authorization: Bearer {token}
+```
+```Json
+{
+  "title": "Estudar .NET 8",
+  "description": "Praticar desenvolvimento de APIs",
+  "dueDate": "2026-02-25"
+}
+```
+
+## 🎯 Objetivo Profissional
+
+Este projeto demonstra:
+
+- Capacidade de estruturar APIs escaláveis
+
+- Aplicação de padrões arquiteturais
+
+- Conhecimento em segurança com JWT
+
+- Organização modular
+
+- Preparação para ambientes containerizados
+
+
+
+## 👩🏻‍💻 Autora
+
+Projeto desenvolvido por Daniela Velter
+Foco em soluções digitais modernas e estratégicas.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%20DanielaVelter-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/danielavelteredu)
+
+
+
+
 
