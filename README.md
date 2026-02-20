@@ -144,8 +144,7 @@ Authorization: Bearer {token}
 ```Json
 {
   "title": "Estudar .NET 8",
-  "description": "Praticar desenvolvimento de APIs",
-  "dueDate": "2026-02-25"
+  "description": "Praticar desenvolvimento de APIs"  
 }
 ```
 
