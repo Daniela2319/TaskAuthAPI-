@@ -5,28 +5,21 @@ namespace trilha_Api_TIVIT.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddDatabaseConfiguration(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+        public static IServiceCollection AddDatabaseConfiguration(
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
-            string connectionString;
-
-            if (environment.IsDevelopment())
-            {
-                // Ambiente local (user-secrets ou appsettings)
-                connectionString = configuration.GetConnectionString("LocalConnection");
-            }
-            else if (environment.IsEnvironment("Docker"))
-            {
-                // Ambiente Docker
-                connectionString = configuration.GetConnectionString("DockerConnection");
-            }
-            else
-            {
-                // Produção - Azure SQL Database
-                connectionString = configuration.GetConnectionString("AzureConnection");
-            }
+            var connectionString =
+                configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString, sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 5,
+                        maxRetryDelay: TimeSpan.FromSeconds(10),
+                        errorNumbersToAdd: null);
+                }));
 
             return services;
         }

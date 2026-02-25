@@ -9,6 +9,8 @@ namespace trilha_Api_TIVIT.Mappers
         // Model => DTO (resposta)
         public TarefaGetResponseDTO ToResponse(Tarefa model)
         {
+            if (model == null) return null;
+
             return new TarefaGetResponseDTO
             {
                 Id = model.Id,
@@ -22,12 +24,16 @@ namespace trilha_Api_TIVIT.Mappers
         // Model → DTO (lista)
         public List<TarefaGetResponseDTO> ToResponseList(List<Tarefa> tarefas)
         {
+            if (tarefas == null) return null;
+
             return tarefas.Select(ToResponse).ToList();
         }
 
         // DTO => Model (entrada ou pergunta request)
         public Tarefa ToModel(TarefaPostRequestDTO request)
         {
+            if (request == null) return null;
+
             return new Tarefa
             {
                 Titulo = request.Titulo,

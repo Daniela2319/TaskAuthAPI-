@@ -20,7 +20,7 @@ if (builder.Environment.IsDevelopment())
 { builder.Configuration.AddUserSecrets<Program>(); }
 
 // Chama a extensão para configurar o banco
-builder.Services.AddDatabaseConfiguration(builder.Configuration, builder.Environment);
+builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
 // Autentificação JWT
 builder.Services.AddAuthenticationConfiguration(builder.Configuration);
@@ -40,29 +40,10 @@ builder.Services.AddLocalCors();
 
 var app = builder.Build();
 
-// Aplica as migrations automaticamente ao iniciar a aplicação para docker
-using (var scope = app.Services.CreateScope())
-{
-   var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-   try
-   {
-       db.Database.Migrate();
-   }
-   catch (Exception ex)
-   {
-       Console.WriteLine($"Erro ao aplicar migrations: {ex.Message}");
-       throw;
-   }
-}
-
-
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseMiddleware<ExceptionMiddleware>();
 

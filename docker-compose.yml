@@ -4,10 +4,10 @@ services:
     build: ./taskAuthApi
     container_name: tarefas-backend
     ports:
-      - "8001:8080" # bate com EXPOSE do Dockerfile
+      - "8001:8080"
     environment:
-      - DOTNET_ENVIRONMENT=Development
-      - ConnectionStrings__DockerConnection=Server=db;Database=TarefasDb;User Id=SA;Password=SenhaForte123!;Encrypt=False;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TarefasDb;User=sa;Password=SenhaForte123;TrustServerCertificate=True;
+      - ASPNETCORE_ENVIRONMENT=Production
     depends_on:
       - db
     networks:
@@ -17,7 +17,7 @@ services:
     container_name: tarefas-db
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=SenhaForte123!
+      - SA_PASSWORD=SenhaForte123
     ports:
       - "1433:1433"
     networks:
