@@ -1,7 +1,7 @@
 
-# 🧱 ESTRUTURA IDEAL DO PROJETO – APP TAREFAS + JWT
+# 🧱 ESTRUTURA DO PROJETO – APP TAREFAS + JWT
 ### 📁 trilha-Api-TIVIT (Backend .NET)
-
+```
 trilha-Api-TIVIT
 │
 ├── Controllers
@@ -73,3 +73,4 @@ trilha-Api-TIVIT
 ├── appsettings.json
 ├── Dockerfile
 └── docker-compose.yml
+```
